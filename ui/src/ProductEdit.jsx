@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 
 import React from 'react';
+import { Table, Button } from 'react-bootstrap';
 import NumInput from './NumInput.jsx';
 import TextInput from './TextInput.jsx';
 
@@ -89,7 +90,7 @@ export default class ProductEdit extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h3>{`Editing product: ${id}`}</h3>
-        <table>
+        <Table bordered striped condensed hover responsive>
           <tbody>
             <tr>
               <td>Name:</td>
@@ -124,11 +125,11 @@ export default class ProductEdit extends React.Component {
             <tr>
               <td />
               <td>
-                <button type="submit">Submit</button>
+                <Button bsStyle="primary">Submit</Button>
               </td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </form>
     );
   }

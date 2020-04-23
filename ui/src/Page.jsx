@@ -10,7 +10,7 @@ import Contents from './Contents.jsx';
 
 function NavBar() {
   return (
-    <Navbar>
+    <Navbar fluid>
       <Navbar.Header>
         <Navbar.Brand>My Company Inventory</Navbar.Brand>
       </Navbar.Header>
@@ -47,6 +47,7 @@ function NavBar() {
 function Footer() {
   return (
     <small>
+      <hr />
       <p className="text-center">
         Full source code available at this
         {' '}
