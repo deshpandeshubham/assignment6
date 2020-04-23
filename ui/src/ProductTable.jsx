@@ -2,12 +2,17 @@
 
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
-  Button, Glyphicon, Tooltip, OverlayTrigger,
+  Table, Button, Glyphicon, Tooltip, OverlayTrigger,
 } from 'react-bootstrap';
 
 const deleteTooltip = (
   <Tooltip id="delete-tooltip" placement="top">Delete Product</Tooltip>
+);
+
+const editTooltip = (
+  <Tooltip id="edit-tooltip" placement="top">Edit Product</Tooltip>
 );
 
 const ProductRow = withRouter(({ product, deleteProduct, index }) => (
@@ -19,7 +24,15 @@ const ProductRow = withRouter(({ product, deleteProduct, index }) => (
     </td>
     <td>{product.Category}</td>
     <td><Link to={`/img/${product.Image}`}>View</Link></td>
-    <td><Link to={`/edit/${product.id}`}>Edit</Link></td>
+    <td>
+      <LinkContainer to={`/edit/${product.id}`}>
+        <OverlayTrigger delayShow={1000} overlay={editTooltip}>
+          <Button bsSize="xsmall">
+            <Glyphicon glyph="edit" />
+          </Button>
+        </OverlayTrigger>
+      </LinkContainer>
+    </td>
     <td>
       <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
         <Button bsSize="xsmall" onClick={() => { deleteProduct(index); }}>
@@ -40,7 +53,7 @@ export default function ProductTable({ products, deleteProduct }) {
     />
   ));
   return (
-    <table className="borderedTable">
+    <Table bordered striped condensed hover responsive>
       <thead>
         <tr>
           <th>Product Name</th>
@@ -54,6 +67,6 @@ export default function ProductTable({ products, deleteProduct }) {
       <tbody>
         {productRows}
       </tbody>
-    </table>
+    </Table>
   );
 }

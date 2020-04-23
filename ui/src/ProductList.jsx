@@ -3,7 +3,6 @@
 // import ProductFilter from './productFilter.jsx';
 
 import React from 'react';
-import { Label } from 'react-bootstrap';
 import ProductTable from './ProductTable.jsx';
 import AddProduct from './ProductAdd.jsx';
 
@@ -73,7 +72,6 @@ export default class Product extends React.Component {
     const { products } = this.state;
     return (
       <div id="mainDiv">
-        <h1><Label>My Company Inventory</Label></h1>
         <h3>Showing all availble products</h3>
         <hr />
         <br />

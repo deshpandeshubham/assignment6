@@ -1,19 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 10px;
     width: 650px;
-    padding-left: 15px;
-}
-
-.borderedTable {
-    border-collapse: collapse;
-    width: 600px;
-}
-
-.borderedTable th, td{
-    border: 1px solid silver;
-    padding: 4px;
-    text-align: center;
 }
 
 #prdCat {
