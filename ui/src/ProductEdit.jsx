@@ -1,8 +1,11 @@
 /* eslint-disable linebreak-style */
 
 import React from 'react';
-import { Table, Button } from 'react-bootstrap';
-import NumInput from './NumInput.jsx';
+import { Link } from 'react-router-dom';
+import {
+  Button, Col, Panel, Form, FormGroup, FormControl, ControlLabel, ButtonToolbar,
+} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import TextInput from './TextInput.jsx';
 
 export default class ProductEdit extends React.Component {
@@ -88,49 +91,81 @@ export default class ProductEdit extends React.Component {
     const { product: { Image, Category } } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>{`Editing product: ${id}`}</h3>
-        <Table bordered striped condensed hover responsive>
-          <tbody>
-            <tr>
-              <td>Name:</td>
-              <td>
-                <TextInput name="Name" value={Name} onChange={this.onChange} key={id} />
-              </td>
-            </tr>
-            <tr>
-              <td>Price:</td>
-              <td>
-                <NumInput name="Price" value={Price} onChange={this.onChange} key={id} />
-              </td>
-            </tr>
-            <tr>
-              <td>Image:</td>
-              <td>
-                <TextInput name="Image" value={Image} onChange={this.onChange} key={id} />
-              </td>
-            </tr>
-            <tr>
-              <td>Category:</td>
-              <td>
-                <select name="Category" value={Category} onChange={this.onChange}>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>{`Editing product: ${id}`}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Form horizontal onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>Name</Col>
+              <Col sm={3}>
+                <FormControl
+                  componentClass={TextInput}
+                  name="name"
+                  value={Name}
+                  onChange={this.onChange}
+                  key={id}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>Price</Col>
+              <Col sm={3}>
+                <FormControl
+                  componentClass={TextInput}
+                  name="Price"
+                  value={Price}
+                  onChange={this.onChange}
+                  key={id}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>Image</Col>
+              <Col sm={3}>
+                <FormControl
+                  componentClass={TextInput}
+                  name="Image"
+                  value={Image}
+                  onChange={this.onChange}
+                  key={id}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup controlId="category">
+              <Col componentClass={ControlLabel} sm={3}>Image</Col>
+              <Col sm={3}>
+                <FormControl
+                  componentClass="select"
+                  value={Category}
+                >
                   <option value="shirt">Shirts</option>
                   <option value="jeans">Jeans</option>
                   <option value="jacket">Jackets</option>
                   <option value="sweater">Sweaters</option>
                   <option value="accessories">Accessories</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td />
-              <td>
-                <Button bsStyle="primary">Submit</Button>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </form>
+                </FormControl>
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col smOffset={3} sm={4}>
+                <ButtonToolbar>
+                  <Button bsStyle="primary" type="submit">Submit</Button>
+                  <LinkContainer to="/products">
+                    <Button bsStyle="link">Back</Button>
+                  </LinkContainer>
+                </ButtonToolbar>
+              </Col>
+            </FormGroup>
+          </Form>
+        </Panel.Body>
+        <Panel.Footer>
+          <Link to={`/edit/${id - 1}`}>Prev</Link>
+          {' | '}
+          <Link to={` edit/${id + 1}`}>Next</Link>
+        </Panel.Footer>
+      </Panel>
     );
   }
 }

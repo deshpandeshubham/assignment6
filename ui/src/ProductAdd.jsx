@@ -58,7 +58,7 @@ export default class AddProduct extends React.Component {
             <Col xs={6} sm={4} md={3} lg={2}>
               <FormGroup>
                 <ControlLabel>Product Name</ControlLabel>
-                <FormControl type="text" name="name" />
+                <FormControl type="text" name="product" />
               </FormGroup>
             </Col>
             <Col xs={6} sm={4} md={3} lg={2}>
