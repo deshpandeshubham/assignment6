@@ -3,15 +3,24 @@
 // import ProductFilter from './productFilter.jsx';
 
 import React from 'react';
+import Toast from './Toast.jsx';
 import ProductTable from './ProductTable.jsx';
 import AddProduct from './ProductAdd.jsx';
 
 export default class Product extends React.Component {
   constructor() {
     super();
-    this.state = { products: [] };
+    this.state = {
+      products: [],
+      toastVisible: false,
+      toastMessage: ' ',
+      toastType: 'info',
+    };
     this.createProduct = this.createProduct.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
+    this.showSuccess = this.showSuccess.bind(this);
+    this.showError = this.showError.bind(this);
+    this.dismissToast = this.dismissToast.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +62,7 @@ export default class Product extends React.Component {
       body: JSON.stringify({ query }),
     });
     this.loadData();
+    this.showSuccess(`Product ${product.id} created successfully`);
   }
 
   async deleteProduct(id) {
@@ -66,12 +76,37 @@ export default class Product extends React.Component {
       body: JSON.stringify({ query, variables }),
     });
     this.loadData();
+    this.showSuccess(`Deleted product ${id} successfully`);
+  }
+
+  showSuccess(message) {
+    this.setState({
+      toastVisible: true, toastMessage: message, toastType: 'success',
+    });
+  }
+
+  showError(message) {
+    this.setState({
+      toastVisible: true, toastMessage: message, toastType: 'danger',
+    });
+  }
+
+  dismissToast() {
+    this.setState({ toastVisible: false });
   }
 
   render() {
     const { products } = this.state;
+    const { toastVisible, toastType, toastMessage } = this.state;
     return (
       <div id="mainDiv">
+        <Toast
+          showing={toastVisible}
+          onDismiss={this.dismissToast}
+          bsStyle={toastType}
+        >
+          {toastMessage}
+        </Toast>
         <h3>Showing all availble products</h3>
         <hr />
         <br />
