@@ -32,7 +32,7 @@ export default class AddProduct extends React.Component {
       <div>
         <Form inline name="productAddForm" className="formAdd" onSubmit={this.handleSubmit}>
           <Row>
-            <Col xs={6} sm={4} md={3} lg={2}>
+            <Col xs={6} sm={4} md={3} lg={1}>
               <FormGroup controlId="category">
                 <ControlLabel>Category</ControlLabel>
                 <FormControl
@@ -46,7 +46,7 @@ export default class AddProduct extends React.Component {
                 </FormControl>
               </FormGroup>
             </Col>
-            <Col xs={6} sm={4} md={3} lg={2}>
+            <Col xs={6} sm={4} md={3} lgOffset={1} lg={2}>
               <FormGroup>
                 <ControlLabel>Price Per Unit</ControlLabel>
                 <FormControl type="text" name="price" defaultValue="$" />

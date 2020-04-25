@@ -62,7 +62,7 @@ export default class Product extends React.Component {
       body: JSON.stringify({ query }),
     });
     this.loadData();
-    this.showSuccess(`Product ${product.id} created successfully`);
+    this.showSuccess(`Product ${newProduct.Name} created successfully`);
   }
 
   async deleteProduct(id) {

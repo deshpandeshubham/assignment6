@@ -22,7 +22,7 @@ export default class Toast extends React.Component {
     } = this.props;
     return (
       <Collapse in={showing}>
-        <div style={{ position: 'fixed', bottom: 20, left: 20 }}>
+        <div style={{ position: 'fixed', bottom: 20, right: 20 }}>
           <Alert bsStyle={bsStyle} onDismiss={onDismiss}>
             {children}
           </Alert>
