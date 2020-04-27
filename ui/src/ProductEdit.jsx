@@ -163,7 +163,7 @@ export default class ProductEdit extends React.Component {
         <Panel.Footer>
           <Link to={`/edit/${id - 1}`}>Prev</Link>
           {' | '}
-          <Link to={` edit/${id + 1}`}>Next</Link>
+          <Link to={`/edit/${id + 1}`}>Next</Link>
         </Panel.Footer>
       </Panel>
     );
